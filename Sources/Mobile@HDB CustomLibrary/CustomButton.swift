@@ -27,7 +27,7 @@ public class CustomButton: UIButton {
        
         setTitleColor(.white, for: .normal)
         
-       backgroundColor      = UIColor.black
+       backgroundColor      = btnPositive().backgroundColor
         titleLabel?.font     = btnPositive().font
         layer.cornerRadius   = 30
       //  layer.borderWidth    = 3.0

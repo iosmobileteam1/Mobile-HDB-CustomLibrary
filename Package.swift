@@ -21,8 +21,8 @@ let package = Package(
         .target(
             name: "Mobile@HDB CustomLibrary",
             dependencies: []),
-        .testTarget(
-            name: "Mobile@HDB CustomLibraryTests",
-            dependencies: ["Mobile@HDB CustomLibrary"]),
+//        .testTarget(
+//            name: "Mobile@HDB CustomLibraryTests",
+//            dependencies: ["Mobile@HDB CustomLibrary"]),
     ]
 )

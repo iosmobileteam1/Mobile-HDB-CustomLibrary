@@ -27,16 +27,14 @@ public class CustomButton: UIButton {
        
         setTitleColor(.white, for: .normal)
         
-       backgroundColor      = btnPositive().backgroundColor
-        titleLabel?.font     = btnPositive().font
-        layer.cornerRadius   = 30
-      //  layer.borderWidth    = 3.0
-      //  layer.borderColor    = UIColor.darkGray.cgColor
-      translatesAutoresizingMaskIntoConstraints = false
+     backgroundColor      = btnPositive().backgroundColor
+     titleLabel?.font     = btnPositive().font
+     layer.cornerRadius   = 30
+     translatesAutoresizingMaskIntoConstraints = false
      heightAnchor.constraint(equalToConstant: 64).isActive = true
-      widthAnchor.constraint(equalToConstant: 345).isActive = true
+     widthAnchor.constraint(equalToConstant: 345).isActive = true
        
-      
+       
        
     }
     

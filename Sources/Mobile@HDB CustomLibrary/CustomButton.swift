@@ -24,8 +24,8 @@ public class CustomButton: UIButton {
 
         setTitleColor(.white, for: .normal)
 
-       backgroundColor      = btnPositive().backgroundColor
-     titleLabel?.font     = btnPositive().font
+       backgroundColor      = BtnPositive().backgroundColor
+     titleLabel?.font     = BtnPositive().font
      layer.cornerRadius   = 30
      translatesAutoresizingMaskIntoConstraints = false
      heightAnchor.constraint(equalToConstant: 64).isActive = true
@@ -33,8 +33,10 @@ public class CustomButton: UIButton {
 
     }
 
-   struct btnPositive {
-        let font = UIScreen.main.bounds.height == 568 ? UIFont.systemFont(ofSize: UIScreen.main.bounds.height / 40) : UIFont.systemFont(ofSize: 16)
+   struct BtnPositive {
+        let font = UIScreen.main.bounds.height == 568 ?
+                   UIFont.systemFont(ofSize: UIScreen.main.bounds.height / 40) :
+                   UIFont.systemFont(ofSize: 16)
         let textColor = UIColor.white
         let backgroundColor = UIColor(red: 12/255, green: 129/255, blue: 136/255, alpha: 1)
     }

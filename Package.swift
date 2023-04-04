@@ -9,7 +9,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Mobile@HDB CustomLibrary",
-            targets: ["Mobile@HDB CustomLibrary"]),
+            targets: ["Mobile@HDB CustomLibrary"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -20,7 +20,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Mobile@HDB CustomLibrary",
-            dependencies: []),
+            dependencies: [])
 //        .testTarget(
 //            name: "Mobile@HDB CustomLibraryTests",
 //            dependencies: ["Mobile@HDB CustomLibrary"]),

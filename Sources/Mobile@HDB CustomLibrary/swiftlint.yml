@@ -1,0 +1,110 @@
+custom_rules:
+
+#    pirates_beat_ninjas: # rule identifier
+#        included:
+#            - ".*\\.swift" # regex that defines paths to include during linting. optional.
+#        excluded:
+#            - ".*Test\\.swift" # regex that defines paths to exclude during linting. optional
+#        name: "Pirates Beat Ninjas" # rule name. optional.
+#        regex: "([nN]inja)" # matching pattern
+#        capture_group: 0 # number of regex capture group to highlight the rule violation at. optional.
+#        match_kinds: # SyntaxKinds to match. optional.
+##            - argument
+##            - attribute.builtin
+##            - attribute.id
+##            - buildconfig.id
+##            - buildconfig.keyword
+#            - comment
+##            - comment.mark
+##            - comment.url
+##            - doccomment
+##            - doccomment.field
+#            - identifier
+##            - keyword
+##            - number
+##            - objectliteral
+##            - parameter
+##            - placeholder
+##            - string
+##            - string_interpolation_anchor
+##            - typeidentifier
+#        message: "Pirates are better than ninjas." # violation message. optional.
+#        severity: error # violation severity. optional.
+#
+#    no_hiding_in_strings:
+#        regex: "([nN]inja)"
+#        match_kinds: string
+#
+#    auto_generated_leftovers:
+#        regex: 'func [^\n]*\{\n(\s*super\.[^\n]*\n(\s*\/\/[^\n]*\n)*|(\s*\/\/[^\n]*\n)+)\s*\}'
+#        message: "Delete auto-generated functions that you don't use"
+#
+#    uibutton:
+#        name: "Button Violation!"
+#        regex: "UIButton"
+#        match_kinds:
+#            - identifier
+#        message: "Don't use other button!"
+#        severity: error
+#
+#    uibutton_type:
+#        name: "Button Violation 2!"
+#        regex: "UIButton"
+#        match_kinds:
+#            - typeidentifier
+#        message: "Don't use other button type!"
+#
+#    button:
+#        name: "Button Violation 3!"
+#        regex: "button"
+#        match_kinds:
+#            - identifier
+#        message: "This is a button!"
+#
+#    color_comment:
+#        name: "Color!"
+#        regex: "Color"
+#        match_kinds:
+#            - comment
+#        message: "This is a comment!"
+#
+#    color_comment_url:
+#        name: "Color!"
+#        regex: "Color"
+#        match_kinds:
+#            - comment.url
+#        message: "This is a url in a comment!"
+#
+#    commented_code:
+#        regex: '(?&lt;!:|\/)\/\/\h*[a-z.](?!wiftlint)'
+#        message: "Comment starting with lowercase letter - did you forget to delete old code?"
+#
+#    multiline_commented_code:
+#        regex: '^\s*[a-z]'
+#        match_kinds: comment
+#        message: "Comment starting with lowercase letter - did you forget to delete old code?"
+#
+#    comma_space_rule:
+#        regex: ",[ ]{2,}"
+#        message: "Expected only one space after ',"
+    
+    -background_colour:
+       regex : "backgroundcolour"
+        message: "Dont use"
+        severity: error
+    
+only_rules:
+    - custom_rules
+    
+# By default, SwiftLint uses a set of sensible default rules you can adjust:
+#disabled_rules: # rule identifiers turned on by default to exclude from running
+#  - colon
+#  - comma
+#  - control_statement
+#opt_in_rules: # some rules are turned off by default, so you need to opt-in
+#  - empty_count # Find all the available rules by running: `swiftlint rules`
+
+# Alternatively, specify all rules explicitly by uncommenting this option:
+# only_rules: # delete `disabled_rules` & `opt_in_rules` if using this
+#   - empty_parameters
+#   - vertical_whitespace

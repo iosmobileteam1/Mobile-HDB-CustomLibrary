@@ -88,8 +88,8 @@ custom_rules:
 #        regex: ",[ ]{2,}"
 #        message: "Expected only one space after ',"
     
-    -background_colour:
-       regex : "backgroundcolour"
+    background_colour:
+        regex: "backgroundColor"
         message: "Dont use"
         severity: error
     

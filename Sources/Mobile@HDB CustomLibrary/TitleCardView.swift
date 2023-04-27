@@ -10,78 +10,84 @@ import UIKit
 
 public class TitleCardView: UICollectionViewCell {
     
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-//        imageView.image = UIImage(named: "image_name")
-        return imageView
+    
+    public var titleCardDataModels: [TitleCardViewCustomData?] = [TitleCardViewCustomData]()
+    
+    public var collectionView:UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(TitleCardViewCell.self, forCellWithReuseIdentifier: "cell")
+
+        return cv
     }()
     
-    private lazy var circleView: UIView = {
-        let circleView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        circleView.translatesAutoresizingMaskIntoConstraints = false
-        circleView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        circleView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        circleView.backgroundColor = UIColor.init(red: 0.79, green: 0.93, blue: 0.88, alpha: 1.0)
-        circleView.addSubview(imageView)
-        circleView.layer.cornerRadius = 30
-        return circleView
-    }()
-    
-    private lazy var headerTitle: UILabel = {
-        let headerTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        headerTitle.translatesAutoresizingMaskIntoConstraints = false
-        headerTitle.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-//        headerTitle.text = "Custom View"
-        headerTitle.textAlignment = .center
-        headerTitle.textColor = .darkGray
-        headerTitle.lineBreakMode = .byWordWrapping
-        headerTitle.numberOfLines = 0
-        return headerTitle
-    }()
-    
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        setupTitleCardView()
+        addSubview(collectionView)
+        setupCollectionView()
+        
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupTitleCardView()
     }
     
-    private func setupTitleCardView() {
-        backgroundColor = .white
-        layer.cornerRadius = 10
-        addSubview(circleView)
-        addSubview(headerTitle)
-        setupLayout()
+    public func setupCollectionView() {
+        addSubview(collectionView)
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.layer.cornerRadius = 12
+        
+        let view = UIScreen.main.bounds
+        heightAnchor.constraint(equalToConstant: 600).isActive = true
+        widthAnchor.constraint(equalToConstant: view.width).isActive = true
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 180).isActive = true
-        widthAnchor.constraint(equalToConstant: 180).isActive = true
+        backgroundColor = .clear
+        
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.heightAnchor.constraint(equalToConstant: 600).isActive = true
+        collectionView.widthAnchor.constraint(equalToConstant: view.width * 64/66).isActive = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        collectionView.layer.masksToBounds = false
+    }
+}
+    
+extension TitleCardView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width * 30/64, height: collectionView.frame.width * 30/64)
     }
     
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            circleView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            circleView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -20),
-            
-            imageView.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
-            
-            headerTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            headerTitle.leadingAnchor.constraint(equalTo: leadingAnchor),
-            headerTitle.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: collectionView.frame.width/64, left: collectionView.frame.width/64, bottom: collectionView.frame.width/64, right: collectionView.frame.width/64)
     }
     
-    public func setImage(image: UIImage) {
-        imageView.image = image
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        collectionView.frame.width * 2/64
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        collectionView.frame.width * 2/64
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return titleCardDataModels.count
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TitleCardViewCell
+        cell.titledata = self.titleCardDataModels[indexPath.item]
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: collectionView.frame.width/64, height: collectionView.frame.width/64)
+        cell.layer.shadowRadius = collectionView.frame.width/64
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.masksToBounds = false
+        return cell
     }
     
-    public func setTitle(title: String) {
-        headerTitle.text = title
-    }
+   
 }

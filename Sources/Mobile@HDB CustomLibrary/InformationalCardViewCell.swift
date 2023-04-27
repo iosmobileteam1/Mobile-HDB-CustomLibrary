@@ -27,6 +27,9 @@ public class InformationalCardViewCell: UITableViewCell {
         let rightArrow = UIImageView()
         
         let bgView = UIView()
+    
+        var imageData = UIImage()
+
 
       
         public  var mainData: informationalCardData? {
@@ -83,7 +86,9 @@ public class InformationalCardViewCell: UITableViewCell {
             bgView.addSubview(rightArrow)
             rightArrow.setViewConstraints(top: nil, left: nil, right: bgView.trailingAnchor, bottom: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10),size: CGSize(width: 15, height: 15))
             rightArrow.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-            rightArrow.image = UIImage(named: "Arrow-right")
+            rightArrow.image = imageData.packagedImage(withName: "Arrow-right")
+            
+          
 
             // configure titleLabel
             bgView.addSubview(firstLabel)
@@ -170,3 +175,12 @@ public class InformationalCardViewCell: UITableViewCell {
     }
     }
 
+public extension UIImage {
+    func packagedImage(withName name: String) -> UIImage? {
+        guard let result = UIImage(named: "\(name).png", in: Bundle.module, compatibleWith: nil) else {
+            return nil
+        }
+
+        return result
+    }
+}

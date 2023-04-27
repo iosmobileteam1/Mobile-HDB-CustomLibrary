@@ -20,7 +20,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Mobile@HDB CustomLibrary",
-            dependencies: [])
+            dependencies: [],
+            resources: [
+                        .process("Media.xcassets")]
+
+        )
 //        .testTarget(
 //            name: "Mobile@HDB CustomLibraryTests",
 //            dependencies: ["Mobile@HDB CustomLibrary"]),

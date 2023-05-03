@@ -53,7 +53,7 @@ public class TitleCardView: UICollectionViewCell {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         collectionView.layer.masksToBounds = false
-        collectionView.clipsToBounds = true
+        clipsToBounds = true
     }
 }
     

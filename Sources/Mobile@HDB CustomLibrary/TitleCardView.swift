@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-public class TitleCardView: UICollectionViewCell {
-    
+public class TitleCardView: UIView {
     
     public var titleCardDataModels: [TitleCardViewCustomData?] = [TitleCardViewCustomData]()
     

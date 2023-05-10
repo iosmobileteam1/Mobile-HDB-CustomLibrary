@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-public class TitleCardView: UICollectionViewCell {
-    
+public class TitleCardView: UIView {
     
     public var titleCardDataModels: [TitleCardViewCustomData?] = [TitleCardViewCustomData]()
     
@@ -48,11 +47,12 @@ public class TitleCardView: UICollectionViewCell {
         backgroundColor = .clear
         
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.heightAnchor.constraint(equalToConstant: 600).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         collectionView.widthAnchor.constraint(equalToConstant: view.width * 64/66).isActive = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         collectionView.layer.masksToBounds = false
+        clipsToBounds = true
     }
 }
     

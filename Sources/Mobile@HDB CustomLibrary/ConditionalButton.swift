@@ -52,8 +52,7 @@ public class ConditionalButton: UIView {
         checkBox.heightAnchor.constraint(equalToConstant: 40).isActive = true
         checkBox.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
-        
-        checkBox.setImage(uncheckedImage, for: UIControl.State.normal)
+        checkBox.setImage(uncheckedImage.packagedImage(withName: "round_uncheck"), for: UIControl.State.normal)
         checkBox.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -10).isActive = true
         checkBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         
@@ -97,7 +96,7 @@ public class ConditionalButton: UIView {
         
         if checkBox.isSelected == true  {
         
-        checkBox.setImage(checkedImage, for: UIControl.State.normal)
+            checkBox.setImage(checkedImage.customImage(withName: "round_checked"), for: UIControl.State.normal)
         continueButton.setTitleColor(.white, for: .normal)
         continueButton.backgroundColor = UIColor(red: 12/255, green: 129/255, blue: 136/255, alpha: 1)
        
@@ -105,7 +104,7 @@ public class ConditionalButton: UIView {
         
         } else {
         
-        checkBox.setImage(uncheckedImage, for: UIControl.State.normal)
+            checkBox.setImage(uncheckedImage.customImage(withName: "round_uncheck"), for: UIControl.State.normal)
         continueButton.setTitleColor(UIColor(red: 12/255, green: 129/255, blue: 136/255, alpha: 1), for: .normal)
         continueButton.backgroundColor = .white
         continueButton.layer.borderWidth = 1.0
@@ -119,6 +118,14 @@ public class ConditionalButton: UIView {
 }
 
  
+public extension UIImage {
+    func customImage(withName name: String) -> UIImage? {
+        guard let result = UIImage(named: "\(name).png", in: Bundle.module, compatibleWith: nil) else {
+            return nil
+        }
+        
+        return result
+    }
     
-
+}
 

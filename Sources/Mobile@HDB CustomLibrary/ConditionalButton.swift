@@ -9,8 +9,8 @@ import UIKit
 
 public class ConditionalButton: UIView {
 
-    let checkedImage = UIImage(named: "round_checked")! as UIImage
-    let uncheckedImage = UIImage(named: "round_uncheck")! as UIImage
+    let checkedImage = UIImage()
+    let uncheckedImage = UIImage()
     
    public var termsLabel = UILabel()
    public var checkBox = UIButton()

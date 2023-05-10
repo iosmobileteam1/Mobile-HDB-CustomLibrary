@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ConditionalButton: UIView {
+public class ConditionalButton: UIView {
 
     let checkedImage = UIImage(named: "round_checked")! as UIImage
     let uncheckedImage = UIImage(named: "round_uncheck")! as UIImage

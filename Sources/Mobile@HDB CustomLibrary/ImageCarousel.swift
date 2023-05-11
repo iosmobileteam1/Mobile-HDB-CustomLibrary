@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageCarousel: UIViewController {
+public class ImageCarousel: UIViewController {
 
     public var pages = [UIViewController]()
     public let pageControl = UIPageControl()
